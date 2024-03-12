@@ -1,0 +1,3 @@
+name: 'Get parameter from AWS SSM'
+description: 'Get parameter from AWS SSM reusable action'
+author: 'Gutenberg Technology'
