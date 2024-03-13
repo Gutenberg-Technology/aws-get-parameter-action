@@ -35,3 +35,5 @@ runs:
       with:
         parameterPairs: ${{ inputs.parameter-pairs }}
      
+    - name: Check outputs
+      echo: $AWS_CLOUDFRONT_ID
