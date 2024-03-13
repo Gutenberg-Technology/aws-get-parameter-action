@@ -4,8 +4,8 @@ author: 'Gutenberg Technology'
 
 
 inputs:
-  secret:
-    description: 'Secret parameter name'
+  parameter-pairs:
+    description: 'Secret parameter name list'
     required: true
   aws-region:
     description: 'AWS region'
@@ -29,11 +29,14 @@ runs:
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
         aws-region: ${{ inputs.aws-region }}
 
-    - name: 'Get parameter'
+    - name: Get parameters
       id: get-parameter
-      run: |
-        aws ssm get-parameter --name ${{ inputs.secret }} --region ${{ inputs.aws-region }} --query "Parameter.Value" --output text
-      shell: bash
+      uses: dkershner6/aws-ssm-getparameters-action@v2
+      with:
+        parameterPairs: ${{ inputs.parameter-pairs }}
+      # The part before equals is the ssm parameterName, and after is the ENV Variable name for the workflow.
+      # No limit on number of parameters. You can put new lines and spaces in as desired, they get trimmed out.
+      withDecryption: "false" # defaults to true
  
     - name: 'Set output'
       run: echo "parameter-value=${{ steps.get-parameter.outputs.stdout }}" >> $GITHUB_ENV
