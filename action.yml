@@ -35,6 +35,3 @@ runs:
       with:
         parameterPairs: ${{ inputs.parameter-pairs }}
      
-    - name: 'Set output'
-      run: echo "parameter-value=${{ steps.get-parameter.outputs.stdout }}" >> $GITHUB_ENV
-      shell: bash
