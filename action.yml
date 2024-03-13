@@ -34,9 +34,3 @@ runs:
       uses: dkershner6/aws-ssm-getparameters-action@v2
       with:
         parameterPairs: ${{ inputs.parameter-pairs }}
-      
-    - name: 'Check outputs'
-      run: |
-        echo "AWS_CLOUDFRONT_ID: ${{ env.AWS_CLOUDFRONT_ID }}"
-        echo "AWS_BUCKET_NAME: ${{ env.AWS_BUCKET_NAME }}"
-      shell: bash
