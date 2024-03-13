@@ -31,9 +31,8 @@ runs:
 
     - name: 'Get parameter'
       id: get-parameter
-      uses: 'aws-actions/aws-cli@v1'
-      with:
-        args: 'ssm get-parameter --name ${{ inputs.secret }} --region ${{ inputs.region }} --query "Parameter.Value" --output text'
+      run: |
+        aws ssm get-parameter --name ${{ inputs.secret }} --region ${{ inputs.region }} --query "Parameter.Value" --output text
  
     - name: 'Set output'
       run: echo "parameter-value=${{ steps.get-parameter.outputs.stdout }}" >> $GITHUB_ENV
