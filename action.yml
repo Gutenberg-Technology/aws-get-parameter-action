@@ -34,10 +34,7 @@ runs:
       uses: dkershner6/aws-ssm-getparameters-action@v2
       with:
         parameterPairs: ${{ inputs.parameter-pairs }}
-      # The part before equals is the ssm parameterName, and after is the ENV Variable name for the workflow.
-      # No limit on number of parameters. You can put new lines and spaces in as desired, they get trimmed out.
-      withDecryption: "false" # defaults to true
- 
+     
     - name: 'Set output'
       run: echo "parameter-value=${{ steps.get-parameter.outputs.stdout }}" >> $GITHUB_ENV
       shell: bash
