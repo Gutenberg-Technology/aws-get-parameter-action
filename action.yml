@@ -32,7 +32,7 @@ runs:
     - name: 'Get parameter'
       id: get-parameter
       run: |
-        aws ssm get-parameter --name ${{ inputs.secret }} --region ${{ inputs.region }} --query "Parameter.Value" --output text
+        aws ssm get-parameter --name ${{ inputs.secret }} --region ${{ inputs.aws-region }} --query "Parameter.Value" --output text
       shell: bash
  
     - name: 'Set output'
