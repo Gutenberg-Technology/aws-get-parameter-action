@@ -1,0 +1,16 @@
+name: Get parameter from AWS SSM
+
+on:
+  push:
+
+jobs:  
+  job_one:
+    name: "Get parameter from AWS SSM"
+    runs-on: ubuntu-latest      
+    steps:     
+      - uses: Gutenberg-Technology/aws-get-parameter-action@main
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          parameter-pairs: "hello=AWS_HELLO,
+            foo=AWS_FOO"
